@@ -9,3 +9,8 @@ spec:
     - deployment/example-nginx
   releaseNotes: |
     release notes
+  ports:
+    - serviceName: "example-nginx"
+      servicePort: 80
+      localPort: 8888
+      applicationUrl: "http://example-nginx"
