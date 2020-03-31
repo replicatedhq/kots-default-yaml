@@ -7,5 +7,6 @@ metadata:
 spec:
   descriptor:
     links:
-      - description: 'Launch'
-        url: "http://example-nginx"
+      - description: 'Open Example Application'
+        # a clever (read: hacked) way to hide the button for Embedded clusters
+        url: '{{repl if (not (IsKurl)) }}http://example-nginx{{repl end}}'
