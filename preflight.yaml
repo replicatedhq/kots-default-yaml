@@ -1,4 +1,4 @@
-apiVersion: troubleshoot.replicated.com/v1beta1
+apiVersion: troubleshoot.sh/v1beta2
 kind: Preflight
 metadata:
   name: example-preflight-checks
@@ -7,12 +7,12 @@ spec:
     - clusterVersion:
         outcomes:
           - fail:
-              when: "< 1.13.0"
-              message: The application requires at Kubernetes 1.13.0 or later, and recommends 1.15.0.
+              when: "< 1.17.0"
+              message: The application requires at least Kubernetes 1.17.0 or later, and recommends 1.18.0.
               uri: https://www.kubernetes.io
           - warn:
-              when: "< 1.15.0"
-              message: Your cluster meets the minimum version of Kubernetes, but we recommend you update to 1.15.0 or later.
+              when: "< 1.18.0"
+              message: Your cluster meets the minimum version of Kubernetes, but we recommend you update to 1.18.0 or later.
               uri: https://kubernetes.io
           - pass:
               message: Your cluster meets the recommended and required versions of Kubernetes.
@@ -24,7 +24,7 @@ spec:
           - fail:
               message: Did not find Docker container runtime.
     - distribution:
-        checkName: Check Kubernetes environment.
+        checkName: Check Kubernetes environment
         outcomes:
           - fail:
               when: "== docker-desktop"
@@ -54,13 +54,13 @@ spec:
           - warn:
               message: Unable to determine the distribution of Kubernetes
     - nodeResources:
-        checkName: Total CPU Cores in the cluster is 2 or greater
+        checkName: Total CPU Cores
         outcomes:
           - fail:
               when: "sum(cpuCapacity) < 2"
-              message: The cluster must contain at least 2 cores
-          - fail:
+              message: The cluster must contain at least 2 cores, and should have at least 4 cores
+          - warn:
               when: "sum(cpuCapacity) < 4"
-              message: The cluster must contain at least 4 cores
+              message: The cluster should contain at least 4 cores
           - pass:
-              message: There are at least 2 cores in the cluster
+              message: There are at least 4 cores in the cluster
