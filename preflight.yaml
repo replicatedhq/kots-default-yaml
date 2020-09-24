@@ -24,7 +24,7 @@ spec:
           - fail:
               message: Did not find Docker container runtime.
     - distribution:
-        checkName: Check Kubernetes environment.
+        checkName: Check Kubernetes environment
         outcomes:
           - fail:
               when: "== docker-desktop"
