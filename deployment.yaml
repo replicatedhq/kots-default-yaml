@@ -21,7 +21,7 @@ spec:
           image: nginx
           envFrom:
           - configMapRef:
-              name: example-config
+              name: example-configmap
           resources:
             limits:
               memory: '256Mi'
