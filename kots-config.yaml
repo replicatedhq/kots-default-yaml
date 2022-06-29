@@ -1,20 +1,46 @@
+---
 apiVersion: kots.io/v1beta1
 kind: Config
 metadata:
-  name: example-config
+  name: config-sample
 spec:
   groups:
-    - name: example_settings
-      title: My Example Config
-      description: Configuration to serve as an example for creating your own. See [https://kots.io/reference/v1beta1/config/](https://kots.io/reference/v1beta1/config/) for configuration docs. In this case, we provide example fields for configuring an Ingress object.
-      items:
-        - name: use_ingress
-          title: Use Ingress?
-          help_text: An example field to toggle inclusion of an Ingress Object
-          type: bool
-          default: "0"
-        - name: ingress_hostname
-          title: Ingress Hostname
-          help_text: If desired, enter the hostname for ingress to this application. You can enter the IP of this instance, or a DNS hostname.
-          type: text
-          when: repl{{ ConfigOptionEquals "use_ingress" "1" }}
+  - name: example_settings
+    title: My Example Config
+    description: Configuration to serve as an example for creating your own. See [https://kots.io/reference/v1beta1/config/](https://kots.io/reference/v1beta1/config/) for configuration docs. In this case, we provide example fields for configuring an Nginx welcome page.
+    items:
+    - name: show_text_inputs
+      title: Customize Text Inputs
+      help_text: "Show custom user text inputs"
+      type: bool
+      default: "0"
+      recommended: true
+    - name: example_default_value
+      title: Text Example (with default value)
+      type: text
+      value: ""
+      default: please change this value
+      when: repl{{ ConfigOptionEquals "show_text_inputs" "1" }}
+    - name: api_token
+      title: API token
+      type: password
+      props:
+        rows: 5
+      when: repl{{ ConfigOptionEquals "show_text_inputs" "1" }}
+    - name: readonly_text_left
+      title: Readonly Text On the Left
+      type: text
+      value: "{{repl RandomString 10}}"
+      readonly: true
+      # affix: left
+      when: repl{{ ConfigOptionEquals "show_text_inputs" "1" }}
+    - name: hidden_text
+      title: Secret Key
+      type: password
+      hidden: true
+      value: "{{repl RandomString 40}}"
+    - name: hidden_text_two
+      title: Public Key
+      type: password
+      hidden: true
+      value: "{{repl RandomString 40}}"

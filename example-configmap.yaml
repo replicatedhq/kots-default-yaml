@@ -1,7 +1,32 @@
+---
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: example-configmap
+  name: nginx-content
 data:
-    ENV_VAR_1: "fake"
-    ENV_VAR_2: "faker"
+  index.html: |
+    <!doctype html>
+    <html>
+      <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title>Demo Application</title>
+        <link href="styles.css" rel="stylesheet" type="text/css">
+      </head>
+      <body>
+        Hello from KOTS.
+        <p>This is text from a user config value: '{{repl ConfigOption "example_default_value"}}' </p>
+        </br>
+        This is a hidden value:
+        </br>
+        <ul>
+          <li>Hidden Text: '{{repl ConfigOption "hidden_text"}}'</li>
+          <li>Hidden Text 2: '{{repl ConfigOption "hidden_text_two"}}'</li>
+        </ul>
+      </body>
+    </html>
+  styles.css: |
+    body {
+      background-color: rgb(224,224,224);
+      font-family: Verdana, Arial, Helvetica, sans-serif;
+      font-size: 100%;
+    }
