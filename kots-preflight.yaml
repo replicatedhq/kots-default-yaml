@@ -53,7 +53,7 @@ spec:
           - warn:
               message: Unable to determine the distribution of Kubernetes.
     - nodeResources:
-        checkName: Total CPU Cores
+        checkName: Required Total CPU Cores
         outcomes:
           - fail:
               when: "sum(cpuCapacity) < 2"
@@ -63,3 +63,27 @@ spec:
               message: The cluster should contain at least 4 cores.
           - pass:
               message: There are at least 4 cores in the cluster.
+        checkName: Required Node Available Disk Space
+        #The below outcomes are intentionally set to very high values as these should be adjusted based on the needs of your application.
+        strict : true
+        #The above setting prevents this preflight check from allowing a user to deploy if the outcome is `false`
+        outcomes:
+          - fail:
+              when: "min(ephemeralStorageCapacity) < 5120Gi"
+              message: The node requires at least 5TB free storage available!
+          - warn:
+              when: "min(ephemeralStorageCapacity) < 10240Gi"
+              message: The node is recommended to have at least 10TB free storage available.
+          - pass:
+              message: There is sufficient free storage ( > 5TB ) available on the node.
+        checkName: Node Allocatable Memory
+        #The below outcomes are intentionally set to very high values as these should be adjusted based on the needs of your application. 
+        outcomes:
+          - fail:
+              when: "sum(allocatableMemory) < 5120Gi"
+              message: The node requires at least 5TB allocatable memory!
+          - warn:
+              when: "min(ephemeralStorageCapacity) < 10240Gi"
+              message: The node is recommended to have at least 10TB allocatable memory.
+          - pass:
+              message: There is sufficient allocatable memory ( > 5TB ) available on the node.   
