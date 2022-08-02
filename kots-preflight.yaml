@@ -87,3 +87,11 @@ spec:
               message: The node is recommended to have at least 10TB allocatable memory.
           - pass:
               message: There is sufficient allocatable memory ( > 5TB ) available on the node.   
+    - storageClass:
+        checkName: Require a default storage class
+        strict: true
+        outcomes:
+          - fail:
+              message: No default storage class was found; a default storage class is required
+          - pass:
+              message: A default storage class was found
