@@ -2,20 +2,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: example-nginx
+  name: nginx
   labels:
-    app: example
-    component: nginx
+    app: nginx
 spec:
   selector:
     matchLabels:
-      app: example
-      component: nginx
+      app: nginx
   template:
     metadata:
       labels:
-        app: example
-        component: nginx
+        app: nginx
       annotations:
         backup.velero.io/backup-volumes: nginx-content
     spec:

@@ -32,7 +32,6 @@ spec:
       type: text
       value: "{{repl RandomString 10}}"
       readonly: true
-      # affix: left
       when: repl{{ ConfigOptionEquals "show_text_inputs" "1" }}
     - name: hidden_text
       title: Secret Key
