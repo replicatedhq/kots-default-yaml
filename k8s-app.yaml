@@ -5,6 +5,6 @@ metadata:
 spec:
   descriptor:
     links:
-      - description: Open The Application
-        # needs to match url in kots-app.yaml
+      - description: Open App
+        # needs to match applicationUrl in kots-app.yaml
         url: "http://nginx"

@@ -28,18 +28,13 @@ spec:
         rows: 5
       when: repl{{ ConfigOptionEquals "show_text_inputs" "1" }}
     - name: readonly_text_left
-      title: Readonly Text On the Left
+      title: Readonly Text
       type: text
       value: "{{repl RandomString 10}}"
       readonly: true
       when: repl{{ ConfigOptionEquals "show_text_inputs" "1" }}
     - name: hidden_text
       title: Secret Key
-      type: password
-      hidden: true
-      value: "{{repl RandomString 40}}"
-    - name: hidden_text_two
-      title: Public Key
       type: password
       hidden: true
       value: "{{repl RandomString 40}}"
