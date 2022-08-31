@@ -94,3 +94,4 @@ spec:
               message: No default storage class was found; a default storage class is required
           - pass:
               message: A default storage class was found
+              
