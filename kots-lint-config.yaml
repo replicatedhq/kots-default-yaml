@@ -84,3 +84,7 @@ spec:
     level: "error"
   - name: config-option-when-is-invalid
     level: "error"
+  - name: config-option-invalid-regex-validator
+    level: "error"
+  - name: config-option-regex-validator-invalid-type
+    level: "error"        
