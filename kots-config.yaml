@@ -27,6 +27,10 @@ spec:
       props:
         rows: 5
       when: repl{{ ConfigOptionEquals "show_text_inputs" "1" }}
+      validation:
+        regex: 
+          pattern: ^(?:[\w@#$%^&+=!*()_\-{}[\]:;"'<>,.?\/|]){8,16}$
+          message: The password must be between 8 and 16 characters long and can contain a combination of uppercase letters, lowercase letters, digits, and special characters.
     - name: readonly_text_left
       title: Readonly Text
       type: text
